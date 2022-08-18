@@ -1,55 +1,64 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yaml
-    kompose.version: 1.26.1 (a9d05d509)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: journeys
-  name: journeys
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      io.kompose.service: journeys
-  strategy: {}
-  template:
-    metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose.yaml
-        kompose.version: 1.26.1 (a9d05d509)
-      creationTimestamp: null
-      labels:
-        io.kompose.service: journeys
-    spec:
-#      volumes:
-#      - name: local-storage
-#        persistentVolumeClaim:
-#          claimName: local-hostpath-pvc
-      containers:
-        - args:
-            - runserver
-          env:
-            - name: ACC_API_HOST
-              value: acc-api
-            - name: ACC_API_PORT
-            - name: BROKER_URL
-            - name: DB_HOST
-            - name: DB_NAME
-            - name: DB_PASS
-            - name: DB_PORT
-            - name: DB_USER
-            - name: JOURNEYS_PORT
-            - name: MIGRATE_DIR
-          image: f5devcentral/f5-bigip-journeys-app:v3.3.4
-          name: journeys
-          ports:
-            - containerPort: 443
-              hostIP: 127.0.0.1
-#          volumeMounts:
-#          - mountPath: /mnt/store
-#            name: local-storage
-          resources: {}
-      restartPolicy: Always
-status: {}
+apiVersion: apps/v1$
+  2 kind: Deployment$
+  3 metadata:$
+  4   annotations:$
+  5     kompose.cmd: kompose convert -f docker-compose.yaml$
+  6     kompose.version: 1.26.1 (a9d05d509)$
+  7   creationTimestamp: null$
+  8   labels:$
+  9     io.kompose.service: journeys$
+ 10   name: journeys$
+ 11 spec:$
+ 12   replicas: 1$
+ 13   selector:$
+ 14     matchLabels:$
+ 15       io.kompose.service: journeys$
+ 16   strategy: {}$
+ 17   template:$
+ 18     metadata:$
+ 19       annotations:$
+ 20         kompose.cmd: kompose convert -f docker-compose.yaml$
+ 21         kompose.version: 1.26.1 (a9d05d509)$
+ 22       creationTimestamp: null$
+ 23       labels:$
+ 24         io.kompose.service: journeys$
+ 25     spec:$
+ 26 #      volumes:$
+ 27 #      - name: local-storage$
+ 28 #        persistentVolumeClaim:$
+ 29 #          claimName: local-hostpath-pvc$
+ 30       containers:$
+ 31         - args:$
+ 32             - runserver$
+ 33           env:$
+ 34           - name: ACC_API_HOST$
+ 35             value: acc-api$
+ 36           - name: ACC_API_PORT$
+ 37             value: "8080"$
+ 38           - name: BROKER_URL$
+ 39             value: redis://redis:6379/0$
+ 40           - name: DB_HOST$
+ 41             value: postgres$
+ 42           - name: DB_NAME$
+ 43             value: postgres$
+ 44           - name: DB_PASS$
+ 45             value: postgres$
+ 46           - name: DB_PORT$
+ 47             value: "5432"$
+ 48           - name: DB_USER$
+ 49             value: postgres$
+ 50           - name: JOURNEYS_PORT$
+ 51             value: "8443"$
+ 52           - name: MIGRATE_DIR$
+ 53             value: /migrate$
+ 54           image: f5devcentral/f5-bigip-journeys-app:v3.3.4$
+ 55           name: journeys$
+ 56           ports:$
+ 57             - containerPort: 443$
+ 58 #              hostIP: 127.0.0.1$
+ 59 #          volumeMounts:$
+ 60 #          - mountPath: /mnt/store$
+ 61 #            name: local-storage$
+ 62           resources: {}$
+ 63       restartPolicy: Always$
+ 64 status: {}$
