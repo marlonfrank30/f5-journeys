@@ -40,13 +40,10 @@ If the service status is shown as Inactive , then you may have to enable and sta
 ```
 sudo systemctl enable --now iscsid
 ```
-
-Note: The following is the expected output.
-
 ```
 systemctl status iscsid
 ```
-
+> Note: The following output is the expected.
 ```
 ● iscsid.service - iSCSI initiator daemon (iscsid)
    Loaded: loaded (/lib/systemd/system/iscsid.service; disabled; vendor preset: enabled)
