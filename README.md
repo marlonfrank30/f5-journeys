@@ -1,20 +1,12 @@
 # f5-journeys installation using vanila kubernetes 
 
-- [OpenShift 4 Bare Metal Install - User Provisioned Infrastructure (UPI)](#openshift-4-bare-metal-install---user-provisioned-infrastructure-upi)
-  - [ iSCSI services](# iSCSI services)
-  - [Download Software](#download-software)
-  - [Prepare the 'Bare Metal' environment](#prepare-the-bare-metal-environment)
-  - [Configure Environmental Services](#configure-environmental-services)
-  - [Generate and host install files](#generate-and-host-install-files)
-  - [Deploy OpenShift](#deploy-openshift)
-  - [Monitor the Bootstrap Process](#monitor-the-bootstrap-process)
-  - [Remove the Bootstrap Node](#remove-the-bootstrap-node)
-  - [Wait for installation to complete](#wait-for-installation-to-complete)
-  - [Join Worker Nodes](#join-worker-nodes)
-  - [Configure storage for the Image Registry](#configure-storage-for-the-image-registry)
-  - [Create the first Admin user](#create-the-first-admin-user)
-  - [Access the OpenShift Console](#access-the-openshift-console)
-  - [Troubleshooting](#troubleshooting)
+- [Description](#description)
+- [iSCSI services check](#iscsi-services-check-for-ubuntu)
+- [iSCSI services installation](#iscsi-services-installation-for-ubuntu)
+- [OpenEBS storage class services installation](#openebs-storage-class-services-installation-for-ubuntu)
+- [Kompose services installation](#kompose-services-installation-for-ubuntu)
+- [f5-journeys modified installation](#f5-journeys-modified-installation)
+
 
 ## Description
 JOURNEYS is an application designed to assist F5 Customers with migrating a BIG-IP configuration to a new F5 device and enable new ways of migrating.
@@ -120,18 +112,6 @@ kubectl get po
 ```
 
 ## f5-journeys modified installation 
-a modiification is required for the external VIP address used by the kubernetes services where the journeys tool will be exposed externally on. just edit the IP address with the IP address that you will expose your journeys on. I've used my Node's Overlay IP address for it just to make things simpler towards the end of the file under ExternalIPs.
-
-  externalIPs:
-  - 10.1.10.86
-
-```
-vi journeys-service-marlon-lb.yaml
-
-```
-
-
-
 7) apply all the other yaml files inside the config directory and check for the pods and services 
 ```
 kubectl apply -f /f5-journeys/*
