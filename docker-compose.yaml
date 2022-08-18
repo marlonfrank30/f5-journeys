@@ -1,0 +1,58 @@
+version: "2"
+services:
+  acc-api:
+    image: f5devcentral/f5-automation-config-converter:1.20.0
+    environment:
+      - ACC_API_PORT=${ACC_API_PORT}
+    restart: unless-stopped
+    command: serve
+    tmpfs: /tmp
+
+  journeys:
+    image: f5devcentral/f5-bigip-journeys-app:v3.3.4
+    environment:
+      - ACC_API_PORT=${ACC_API_PORT}
+      - ACC_API_HOST=acc-api
+      - JOURNEYS_PORT=${JOURNEYS_PORT}
+      - MIGRATE_DIR=${MIGRATE_DIR}
+      - BROKER_URL=${BROKER_URL}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+    command:
+      runserver
+
+    ports:
+      - "127.0.0.1:${JOURNEYS_PORT}:443"
+    depends_on:
+      - acc-api
+      - postgres
+    volumes:
+      - "${WORKING_DIRECTORY}:${MIGRATE_DIR}"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  celery-worker:
+    image: f5devcentral/f5-bigip-journeys-app:v3.3.4
+    command: celery -A journeys.backend worker -l debug
+    environment:
+      - BROKER_URL=${BROKER_URL}
+    volumes:
+      - "${WORKING_DIRECTORY}:${MIGRATE_DIR}"
+    depends_on:
+      - journeys
+      - redis
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    volumes:
+      - "${WORKING_DIRECTORY}/db:/var/lib/postgresql/data"
