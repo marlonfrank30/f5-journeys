@@ -1,3 +1,5 @@
+Note: This repo is not maintained nor supported by F5
+
 # f5-journeys installation using vanila kubernetes 
 
 - [Description](#description)
