@@ -16,7 +16,7 @@ Supported journeys:
 Full Config migration - migrating a BIG-IP configuration from any version starting at 11.5.0 to a higher one, including VELOS and rSeries systems.
 Application Service migration - migrating mission critical Applications and their dependencies to a new AS3 configuration and deploying it to a BIG-IP instance of choice. More details can be found at https://github.com/f5devcentral/f5-journeys#description
 
-Tto start our installation let's make sure all the pre-requisits are in place first not only from a journeys's perspective but also in the k8s cluster itself.
+To start our installation let's make sure all the pre-requisits are in place first not only from a journeys's perspective but also in the k8s cluster itself. This repo assumes that you are using Ubuntu as the linux operating system even though references to other flavor have been made available.
 
 ## iSCSI services check for ubuntu
 
@@ -94,7 +94,7 @@ spec:
       claimName: local-hostpath-pvc
 ```
 
-## Kompose services installation for ubuntu
+## Kompose services installation
 5) install kompose via a deb package that is released for compose. Download latest package in the assets in github releases.
 
 ```
