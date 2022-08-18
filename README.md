@@ -1,7 +1,7 @@
 # f5-journeys installation using vanila kubernetes 
 
 - [OpenShift 4 Bare Metal Install - User Provisioned Infrastructure (UPI)](#openshift-4-bare-metal-install---user-provisioned-infrastructure-upi)
-  - [iSCSI service](#iSCSI services)
+  - [iSCSI services](#iSCSI services)
   - [Download Software](#download-software)
   - [Prepare the 'Bare Metal' environment](#prepare-the-bare-metal-environment)
   - [Configure Environmental Services](#configure-environmental-services)
@@ -19,6 +19,9 @@
 Read the prerequesites for your linux platform at https://openebs.io/docs/user-guides/prerequisites#ubuntu
 
 ## iSCSI services
+
+![iSCSI services](.test.png)
+
 1) Verify iSCSI services are configured for Ubuntu. If iSCSI initiator is already installed on your node, check that the initiator name is configured and iSCSI service is running using the following commands.
 
 ```
