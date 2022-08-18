@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.26.1 (a9d05d509)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: journeys
+  name: journeys
+spec:
+  selector:
+    io.kompose.service: journeys
+  ports:
+    - port: 443
+      targetPort: 443
+  type: LoadBalancer
+  externalIPs:
+  - 10.1.10.86
+status:
+  loadBalancer: {}
+  
