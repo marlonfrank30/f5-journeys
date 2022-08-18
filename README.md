@@ -105,9 +105,9 @@ sudo apt install ./kompose_1.26.1_amd64.deb
 6) convert the docker container files into kubernetes compliant yaml files using Kompose
 
 ```
-cd f5-journeys/config
+cd f5-journeys
 kompose convert -f docker-compose.yaml
-kubectl apply -f .
+kubectl apply -f celery-worker-deployment.yaml acc-api-deployment.yaml journeys-deployment.yaml journeys-service.yaml local-hostpath-pvc.yaml postgres-claim0-persistentvolumeclaim.yaml postgres-deployment.yaml redis-deployment.yaml redis-service.yaml postgres-claim0-persistentvolumeclaim.yaml
 kubectl get po
 ```
 
