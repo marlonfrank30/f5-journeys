@@ -84,7 +84,7 @@ oc get storageclass -n openebs
 oc apply -f local-hostpath-pvc.yaml
 ```
 
-***Note: this is already done but for your knowledge, I had to download the f5-journeys repo from github located at https://github.com/f5devcentral/f5-journeys.git and then edit the journeys default deployment yaml file to included the following specs from the example app on item number 5 above. This is already done in the /config files already. Prerequesites for your linux platform are available in more details at https://openebs.io/docs/user-guides/prerequisites***
+***Note: This is already done in the /config files already. This is just a walk through of what I did in order to get the docker files from f5 journeys tool fully converted to kubernetes. I had to download the f5-journeys repo from github located at https://github.com/f5devcentral/f5-journeys.git and then edit the journeys default deployment yaml file to included the following specs from the example app on item number 4 above. Prerequesites for your linux platform are available in more details at https://openebs.io/docs/user-guides/prerequisites*** you can skip to step 6.
 
 ```
 spec:
@@ -105,8 +105,8 @@ sudo apt install ./kompose_1.26.1_amd64.deb
 6) convert the docker container files into kubernetes compliant yaml files using Kompose
 
 ```
-cd f5-journeys
-kompose convert -f docker-compose.yaml
+cd f5-journeys/config
+#kompose convert -f docker-compose.yaml
 kubectl apply -f celery-worker-deployment.yaml acc-api-deployment.yaml journeys-deployment.yaml journeys-service.yaml local-hostpath-pvc.yaml postgres-claim0-persistentvolumeclaim.yaml postgres-deployment.yaml redis-deployment.yaml redis-service.yaml postgres-claim0-persistentvolumeclaim.yaml
 kubectl get po
 ```
