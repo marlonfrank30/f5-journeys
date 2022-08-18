@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.26.1 (a9d05d509)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: celery-worker
+  name: celery-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: celery-worker
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yaml
+        kompose.version: 1.26.1 (a9d05d509)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: celery-worker
+    spec:
+      containers:
+        - args:
+            - celery
+            - -A
+            - journeys.backend
+            - worker
+            - -l
+            - debug
+          env:
+            - name: BROKER_URL
+          image: f5devcentral/f5-bigip-journeys-app:v3.3.4
+          name: celery-worker
+          resources: {}
+      restartPolicy: Always
+status: {}
