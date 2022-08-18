@@ -43,6 +43,7 @@ sudo systemctl enable --now iscsid
 
 Note: The following is the expected output.
 
+```
 systemctl status iscsid
 ● iscsid.service - iSCSI initiator daemon (iscsid)
    Loaded: loaded (/lib/systemd/system/iscsid.service; disabled; vendor preset: enabled)
@@ -55,6 +56,7 @@ systemctl status iscsid
    CGroup: /system.slice/iscsid.service
            ├─11186 /sbin/iscsid
            └─11187 /sbin/iscsid
+```
 
 ## iSCSI services installation for ubuntu
 2) Installing iSCSI tools - If iSCSI initiator is not installed on your node, install open-iscsi packages using the following commands.
