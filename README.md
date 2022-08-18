@@ -109,7 +109,7 @@ sudo apt install ./kompose_1.26.1_amd64.deb
 ```
 cd f5-journeys/config
 #kompose convert -f docker-compose.yaml
-kubectl apply -f celery-worker-deployment.yaml acc-api-deployment.yaml journeys-deployment.yaml journeys-service.yaml local-hostpath-pvc.yaml postgres-claim0-persistentvolumeclaim.yaml postgres-deployment.yaml redis-deployment.yaml redis-service.yaml postgres-claim0-persistentvolumeclaim.yaml
+kubectl apply -f celery-worker-deployment.yaml acc-api-deployment.yaml journeys-deployment.yaml journeys-service.yaml local-hostpath-pvc.yaml postgres-claim0-persistentvolumeclaim.yaml postgres-deployment.yaml redis-deployment.yaml redis-service.yaml postgres-claim0-persistentvolumeclaim.yaml acc-api-service.yaml journeys-claim0-persistentvolumeclaim.yaml journeys-persistentvolume.yaml journeys-storageclass.yaml postgres-service.yaml
 kubectl get po
 ```
 
