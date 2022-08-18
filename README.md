@@ -112,9 +112,9 @@ kubectl get po
 ```
 
 ## f5-journeys modified installation 
-7) apply all the other yaml files inside the config directory and check for the pods and services 
+7) After applying the yaml files inside the config directory pleaes check for the pods' statuses and their respectively services (listeners)
 ```
-kubectl apply -f /f5-journeys/*
+
 kubect get pods -A
 kubect get svc 
 ```
