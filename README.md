@@ -121,4 +121,4 @@ kubect get svc
 
 To validate journeys is up and running access the application using the ip address added in the previous step pointing your browser to it https://10.1.10.86 and it should work 
 
-![Journeys.PNG](./Journeys.PNG)
+![Journeys](./journeys.png)
