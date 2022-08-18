@@ -1,40 +1,41 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yaml
-    kompose.version: 1.26.1 (a9d05d509)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: celery-worker
-  name: celery-worker
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      io.kompose.service: celery-worker
-  strategy: {}
-  template:
-    metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose.yaml
-        kompose.version: 1.26.1 (a9d05d509)
-      creationTimestamp: null
-      labels:
-        io.kompose.service: celery-worker
-    spec:
-      containers:
-        - args:
-            - celery
-            - -A
-            - journeys.backend
-            - worker
-            - -l
-            - debug
-          env:
-            - name: BROKER_URL
-          image: f5devcentral/f5-bigip-journeys-app:v3.3.4
-          name: celery-worker
-          resources: {}
-      restartPolicy: Always
-status: {}
+  1 apiVersion: apps/v1$
+  2 kind: Deployment$
+  3 metadata:$
+  4   annotations:$
+  5     kompose.cmd: kompose convert -f docker-compose.yaml$
+  6     kompose.version: 1.26.1 (a9d05d509)$
+  7   creationTimestamp: null$
+  8   labels:$
+  9     io.kompose.service: celery-worker$
+ 10   name: celery-worker$
+ 11 spec:$
+ 12   replicas: 1$
+ 13   selector:$
+ 14     matchLabels:$
+ 15       io.kompose.service: celery-worker$
+ 16   strategy: {}$
+ 17   template:$
+ 18     metadata:$
+ 19       annotations:$
+ 20         kompose.cmd: kompose convert -f docker-compose.yaml$
+ 21         kompose.version: 1.26.1 (a9d05d509)$
+ 22       creationTimestamp: null$
+ 23       labels:$
+ 24         io.kompose.service: celery-worker$
+ 25     spec:$
+ 26       containers:$
+ 27         - args:$
+ 28             - celery$
+ 29             - -A$
+ 30             - journeys.backend$
+ 31             - worker$
+ 32             - -l$
+ 33             - debug$
+ 34           env:$
+ 35             - name: BROKER_URL$
+ 36               value: redis://redis:6379/0$
+ 37           image: f5devcentral/f5-bigip-journeys-app:v3.3.4$
+ 38           name: celery-worker$
+ 39           resources: {}$
+ 40       restartPolicy: Always$
+ 41 status: {}$
