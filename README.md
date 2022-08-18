@@ -1,7 +1,7 @@
 # f5-journeys installation using vanila kubernetes 
 
 - [OpenShift 4 Bare Metal Install - User Provisioned Infrastructure (UPI)](#openshift-4-bare-metal-install---user-provisioned-infrastructure-upi)
-  - [Architecture Diagram](#architecture-diagram)
+  - [iSCSI service](#iSCSI services)
   - [Download Software](#download-software)
   - [Prepare the 'Bare Metal' environment](#prepare-the-bare-metal-environment)
   - [Configure Environmental Services](#configure-environmental-services)
