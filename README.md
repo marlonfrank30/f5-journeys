@@ -16,9 +16,17 @@
   - [Access the OpenShift Console](#access-the-openshift-console)
   - [Troubleshooting](#troubleshooting)
 
-Read the prerequesites for your linux platform at https://openebs.io/docs/user-guides/prerequisites#ubuntu
+## Description
+JOURNEYS is an application designed to assist F5 Customers with migrating a BIG-IP configuration to a new F5 device and enable new ways of migrating.
 
-## iSCSI services check
+Supported journeys:
+
+Full Config migration - migrating a BIG-IP configuration from any version starting at 11.5.0 to a higher one, including VELOS and rSeries systems.
+Application Service migration - migrating mission critical Applications and their dependencies to a new AS3 configuration and deploying it to a BIG-IP instance of choice. More details can be found at https://github.com/f5devcentral/f5-journeys#description
+
+Tto start our installation let's make sure all the pre-requisits are in place first not only from a journeys's perspective but also in the k8s cluster itself.
+
+## iSCSI services check for ubuntu
 
 1) Verify iSCSI services are configured for Ubuntu. If iSCSI initiator is already installed on your node, check that the initiator name is configured and iSCSI service is running using the following commands.
 
@@ -48,7 +56,7 @@ systemctl status iscsid
            ├─11186 /sbin/iscsid
            └─11187 /sbin/iscsid
 
-## iSCSI services installation 
+## iSCSI services installation for ubuntu
 2) Installing iSCSI tools - If iSCSI initiator is not installed on your node, install open-iscsi packages using the following commands.
 
 ```
@@ -57,8 +65,8 @@ sudo apt-get install open-iscsi
 sudo systemctl enable --now iscsid
 ```
 
-## OpenEBS storage class services installation 
-3) install openebs for ubuntu in order to define your storageclass
+## OpenEBS storage class services installation for ubuntu
+3) install openebs for ubuntu in order to define your storageclass. 
 
 ```
 kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml
@@ -82,7 +90,7 @@ oc get storageclass -n openebs
 oc apply -f local-hostpath-pvc.yaml
 ```
 
-***Note: this is already done but for your knowledge, I had to download the f5-journeys repo from github located at https://github.com/f5devcentral/f5-journeys.git and then edit the journeys default deployment yaml file to included the following specs from the example app on item number 5 above. This is already done in the /config files already***
+***Note: this is already done but for your knowledge, I had to download the f5-journeys repo from github located at https://github.com/f5devcentral/f5-journeys.git and then edit the journeys default deployment yaml file to included the following specs from the example app on item number 5 above. This is already done in the /config files already. Prerequesites for your linux platform are available in more details at https://openebs.io/docs/user-guides/prerequisites***
 
 ```
 spec:
@@ -92,7 +100,7 @@ spec:
       claimName: local-hostpath-pvc
 ```
 
-## Kompose services installation 
+## Kompose services installation for ubuntu
 5) install kompose via a deb package that is released for compose. Download latest package in the assets in github releases.
 
 ```
