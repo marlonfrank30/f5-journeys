@@ -45,6 +45,9 @@ Note: The following is the expected output.
 
 ```
 systemctl status iscsid
+```
+
+```
 ● iscsid.service - iSCSI initiator daemon (iscsid)
    Loaded: loaded (/lib/systemd/system/iscsid.service; disabled; vendor preset: enabled)
    Active: **active** (running) since Mon 2019-02-18 11:00:07 UTC; 1min 51s ago
