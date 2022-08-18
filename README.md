@@ -1,7 +1,7 @@
 # f5-journeys installation using vanila kubernetes 
 
 - [OpenShift 4 Bare Metal Install - User Provisioned Infrastructure (UPI)](#openshift-4-bare-metal-install---user-provisioned-infrastructure-upi)
-  - [iSCSI services](#iSCSI services)
+  - [ iSCSI services](# iSCSI services)
   - [Download Software](#download-software)
   - [Prepare the 'Bare Metal' environment](#prepare-the-bare-metal-environment)
   - [Configure Environmental Services](#configure-environmental-services)
@@ -18,9 +18,7 @@
 
 Read the prerequesites for your linux platform at https://openebs.io/docs/user-guides/prerequisites#ubuntu
 
-## iSCSI services
-
-![iSCSI services](.test.png)
+## iSCSI services check
 
 1) Verify iSCSI services are configured for Ubuntu. If iSCSI initiator is already installed on your node, check that the initiator name is configured and iSCSI service is running using the following commands.
 
@@ -50,8 +48,8 @@ systemctl status iscsid
            ├─11186 /sbin/iscsid
            └─11187 /sbin/iscsid
 
-2) Installing iSCSI tools 
-If iSCSI initiator is not installed on your node, install open-iscsi packages using the following commands.
+## iSCSI services installation 
+2) Installing iSCSI tools - If iSCSI initiator is not installed on your node, install open-iscsi packages using the following commands.
 
 ```
 sudo apt-get update
@@ -59,6 +57,7 @@ sudo apt-get install open-iscsi
 sudo systemctl enable --now iscsid
 ```
 
+## OpenEBS storage class services installation 
 3) install openebs for ubuntu in order to define your storageclass
 
 ```
@@ -93,7 +92,8 @@ spec:
       claimName: local-hostpath-pvc
 ```
 
-5) install kompose via a deb package  that is released for compose. Download latest package in the assets in github releases.
+## Kompose services installation 
+5) install kompose via a deb package that is released for compose. Download latest package in the assets in github releases.
 
 ```
 wget https://github.com/kubernetes/kompose/releases/download/v1.26.1/kompose_1.26.1_amd64.deb # Replace 1.26.1 with latest tag
@@ -109,9 +109,10 @@ kubectl apply -f .
 kubectl get po
 ```
 
+## f5-journeys installation 
 7) apply all the other yaml files inside the config directory and check for the pods and services 
 ```
-kubectl apply -f *
+kubectl apply -f /f5-journeys/*
 kubect get pods -A
 kubect get svc 
 ```
