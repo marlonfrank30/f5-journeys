@@ -118,3 +118,5 @@ kubectl apply -f /f5-journeys/*
 kubect get pods -A
 kubect get svc 
 ```
+
+in order to validate journeys is up and running access the application using the ip address added in the previous step pointing your browser to it https://10.1.10.89 and it should work 
