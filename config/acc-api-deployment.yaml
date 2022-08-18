@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert -f docker-compose.yaml
-    kompose.version: 1.26.1 (a9d05d509)
+    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
+    kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
     io.kompose.service: acc-api
@@ -17,26 +17,32 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f docker-compose.yaml
-        kompose.version: 1.26.1 (a9d05d509)
+        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
+        kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
         io.kompose.service: acc-api
     spec:
       containers:
-        - args:
-            - serve
-          env:
-            - name: ACC_API_PORT
-          image: f5devcentral/f5-automation-config-converter:1.20.0
-          name: acc-api
-          resources: {}
-          volumeMounts:
-            - mountPath: /tmp
-              name: acc-api-tmpfs0
-      restartPolicy: Always
-      volumes:
-        - emptyDir:
-            medium: Memory
+      - args:
+        - serve
+        env:
+        - name: ACC_API_PORT
+          value: "8080"
+        image: f5devcentral/f5-automation-config-converter
+        imagePullPolicy: "Always"
+        name: acc-api
+        ports:
+        - containerPort: 8080
+          hostIP: 127.0.0.1
+        resources: {}
+        volumeMounts:
+        - mountPath: /tmp
           name: acc-api-tmpfs0
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: acc-api-tmpfs0
 status: {}

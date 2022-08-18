@@ -3,13 +3,13 @@ kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: postgres-claim0
-  name: postgres-claim0
+    io.kompose.service: journeys-claim0
+  name: journeys-claim0
 spec:
   storageClassName: manual
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 100Mi
 status: {}
