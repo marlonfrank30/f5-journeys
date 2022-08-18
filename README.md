@@ -109,7 +109,7 @@ kubectl apply -f .
 kubectl get po
 ```
 
-## f5-journeys installation 
+## f5-journeys modified installation 
 7) apply all the other yaml files inside the config directory and check for the pods and services 
 ```
 kubectl apply -f /f5-journeys/*
