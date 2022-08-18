@@ -120,6 +120,18 @@ kubectl get po
 ```
 
 ## f5-journeys modified installation 
+a modiification is required for the external VIP address used by the kubernetes services where the journeys tool will be exposed externally on. just edit the IP address with the IP address that you will expose your journeys on. I've used my Node's Overlay IP address for it just to make things simpler towards the end of the file under ExternalIPs.
+
+  externalIPs:
+  - 10.1.10.86
+
+```
+vi journeys-service-marlon-lb.yaml
+
+```
+
+
+
 7) apply all the other yaml files inside the config directory and check for the pods and services 
 ```
 kubectl apply -f /f5-journeys/*
