@@ -18,7 +18,7 @@ Supported journeys:
 Full Config migration - migrating a BIG-IP configuration from any version starting at 11.5.0 to a higher one, including VELOS and rSeries systems.
 Application Service migration - migrating mission critical Applications and their dependencies to a new AS3 configuration and deploying it to a BIG-IP instance of choice. More details can be found at https://github.com/f5devcentral/f5-journeys#description
 
-To start our installation let's make sure all the pre-requisits are in place first not only from a journeys's perspective but also in the k8s cluster itself. This repo assumes that you are using Ubuntu as the linux operating system even though references to other flavor have been made available.
+To start our installation let's make sure all the pre-requisits are in place first not only from a journeys's perspective but also in the k8s cluster itself. This repo assumes that you are using Ubuntu as the linux operating system even though references to other flavors have been made available.
 
 ## iSCSI services check for ubuntu
 
@@ -80,13 +80,13 @@ oc patch storageclass openebs-hostpath -p '{"metadata": {"annotations":{"storage
 oc get storageclass -n openebs
 ```
 
-4) apply the yaml file for the pvc storage class referenced for the pvc local-hostpath-pvc.yaml available as a reference at https://openebs.io/docs/user-guides/localpv-hostpath. the repo has this file already modified with all it is needed.
+4) apply the yaml file for the pvc storageclass referenced for the pv local-hostpath-pvc.yaml available as a reference at https://openebs.io/docs/user-guides/localpv-hostpath. the repo has this file already modified with all it is needed.
 
 ```
 oc apply -f local-hostpath-pvc.yaml
 ```
 
-***Note: This is already done in the /config files already. This is just a walk through of what I did in order to get the docker files from f5 journeys tool fully converted to kubernetes. I had to download the f5-journeys repo from github located at https://github.com/f5devcentral/f5-journeys.git and then edit the journeys default deployment yaml file to included the following specs from the example app on item number 4 above. Prerequesites for your linux platform are available in more details at https://openebs.io/docs/user-guides/prerequisites you can skip to step 6.***
+***Note: This is already done in the /config files. This is just a walk through of what its needed to get the docker files converted from f5 journeys tool to kubernetes. Download the f5-journeys repo from github located at https://github.com/f5devcentral/f5-journeys.git and then edit the journeys default deployment yaml file included the following specs (provided in the example app on item number 4 above). Prerequesites for your linux platform are available in more details at https://openebs.io/docs/user-guides/prerequisites you can skip to step 6.***
 
 ```
 spec:
@@ -104,7 +104,7 @@ wget https://github.com/kubernetes/kompose/releases/download/v1.26.1/kompose_1.2
 sudo apt install ./kompose_1.26.1_amd64.deb
 ```
 
-6) convert the docker container files into kubernetes compliant yaml files using Kompose
+6) convert the docker container files into kubernetes files using Kompose located at https://https://kompose.io/ 
 
 ```
 cd f5-journeys/config
@@ -121,6 +121,6 @@ kubect get pods -A
 kubect get svc 
 ```
 
-To validate journeys is up and running access the application using the ip address added in the previous step pointing your browser to it https://10.1.10.86 and it should work 
+To validate journeys installation, access the application using the ip address added in the previous step pointing your browser to it https://10.1.10.86 and it should work 
 
 ![Journeys](./journeys.png)
