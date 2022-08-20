@@ -110,16 +110,38 @@ sudo apt install ./kompose_1.26.1_amd64.deb
 cd f5-journeys/config
 #kompose convert -f docker-compose.yaml
 kubectl apply -f celery-worker-deployment.yaml acc-api-deployment.yaml journeys-deployment.yaml journeys-service.yaml local-hostpath-pvc.yaml postgres-claim0-persistentvolumeclaim.yaml postgres-deployment.yaml redis-deployment.yaml redis-service.yaml postgres-claim0-persistentvolumeclaim.yaml acc-api-service.yaml journeys-claim0-persistentvolumeclaim.yaml journeys-persistentvolume.yaml journeys-storageclass.yaml postgres-service.yaml
-kubectl get po
 ```
+
+
+
 
 ## f5-journeys modified installation 
 7) After applying the yaml files inside the config directory pleaes check for the pods' statuses and their respectively services (listeners)
 ```
-
-kubect get pods -A
-kubect get svc 
+kubectl get pods
+kubectl get svc
+kubectl get deployments
 ```
+
+marlon@k8s-master:~$ kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+acc-api-dcc884488-b7gnt     1/1     Running   0          40h
+journeys-756dfbc46b-thf2w   1/1     Running   0          40h
+postgres-cf89cf69c-r7vk6    1/1     Running   0          40h
+redis-5dcfcfbdc5-5qdns      1/1     Running   0          40h
+marlon@k8s-master:~$ kubectl get deployment
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+acc-api    1/1     1            1           41h
+journeys   1/1     1            1           41h
+postgres   1/1     1            1           41h
+redis      1/1     1            1           41h
+marlon@k8s-master:~$ oc get svc
+NAME            TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)         AGE
+acc-api         ClusterIP      10.107.215.203   <none>        8080/TCP        40h
+journeys        LoadBalancer   10.103.252.252   10.1.10.92    443:30309/TCP   41h
+postgres        ClusterIP      10.107.32.108    <none>        5432/TCP        41h
+redis           ClusterIP      10.106.97.12     <none>        6379/TCP        43h
+marlon@k8s-master:~$
 
 To validate journeys installation, access the application using the ip address added in the previous step pointing your browser to it https://10.1.10.86 and it should work 
 
