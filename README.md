@@ -123,7 +123,8 @@ kubectl get svc
 kubectl get deployments
 ```
 
-```marlon@k8s-master:~$ kubectl get pods
+```
+marlon@k8s-master:~$ kubectl get pods
 NAME                        READY   STATUS    RESTARTS   AGE
 acc-api-dcc884488-b7gnt     1/1     Running   0          40h
 journeys-756dfbc46b-thf2w   1/1     Running   0          40h
