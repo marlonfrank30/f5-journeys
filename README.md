@@ -144,6 +144,6 @@ postgres        ClusterIP      10.107.32.108    <none>        5432/TCP        41
 redis           ClusterIP      10.106.97.12     <none>        6379/TCP        43h
 marlon@k8s-master:~$
 ```
-To validate journeys installation, access the application using the ip address added in the previous step pointing your browser to it https://10.1.10.86 and it should work 
+To validate journeys installation, access the application using the ip address added in the previous step pointing your browser to it https://10.1.10.92 and it should work 
 
 ![Journeys](./journeys.png)
