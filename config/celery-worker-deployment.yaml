@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
-    kompose.version: 1.21.0 (992df58d8)
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.26.1 (a9d05d509)
   creationTimestamp: null
   labels:
     io.kompose.service: celery-worker
@@ -13,39 +13,29 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: celery-worker
-  strategy:
-    type: Recreate
+  strategy: {}
   template:
     metadata:
       annotations:
-        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
-        kompose.version: 1.21.0 (992df58d8)
+        kompose.cmd: kompose convert -f docker-compose.yaml
+        kompose.version: 1.26.1 (a9d05d509)
       creationTimestamp: null
       labels:
         io.kompose.service: celery-worker
     spec:
       containers:
-      - args:
-        - celery
-        - -A
-        - journeys.backend
-        - worker
-        - -l
-        - debug
-        env:
-        - name: BROKER_URL
-          value: redis://redis:6379/0
-        image: f5devcentral/f5-bigip-journeys-app
-        imagePullPolicy: "Always"
-        name: celery-worker
-        resources: {}
-        volumeMounts:
-        - mountPath: /migrate
-          name: celery-worker-claim0
+        - args:
+            - celery
+            - -A
+            - journeys.backend
+            - worker
+            - -l
+            - debug
+          env:
+            - name: BROKER_URL
+              value: redis://redis:6379/0
+          image: f5devcentral/f5-bigip-journeys-app:v3.3.4
+          name: celery-worker
+          resources: {}
       restartPolicy: Always
-      serviceAccountName: ""
-      volumes:
-      - name: celery-worker-claim0
-        persistentVolumeClaim:
-          claimName: celery-worker-claim0
 status: {}

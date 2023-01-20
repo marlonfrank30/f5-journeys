@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
-    kompose.version: 1.21.0 (992df58d8)
+    kompose.cmd: kompose convert -f docker-compose.yaml
+    kompose.version: 1.26.1 (a9d05d509)
   creationTimestamp: null
   labels:
     io.kompose.service: redis
@@ -17,20 +17,17 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert
-        kompose.version: 1.21.0 (992df58d8)
+        kompose.cmd: kompose convert -f docker-compose.yaml
+        kompose.version: 1.26.1 (a9d05d509)
       creationTimestamp: null
       labels:
         io.kompose.service: redis
     spec:
       containers:
-      - image: redis:latest
-        imagePullPolicy: "Always"
-        name: redis
-        ports:
-        - containerPort: 6379
-        resources: {}
+        - image: redis:latest
+          name: redis
+          ports:
+            - containerPort: 6379
+          resources: {}
       restartPolicy: Always
-      serviceAccountName: ""
-      volumes: null
 status: {}

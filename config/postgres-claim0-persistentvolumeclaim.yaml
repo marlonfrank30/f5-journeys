@@ -6,10 +6,10 @@ metadata:
     io.kompose.service: postgres-claim0
   name: postgres-claim0
 spec:
-  storageClassName: manual
+  storageClassName: openebs-hostpath-postgres
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 100Mi
 status: {}
