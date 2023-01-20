@@ -1,4 +1,4 @@
-> **** Note: This repo is not maintained nor supported by F5****
+> **** Note: This repo is not maintained nor supported by F5**** test
 
 # f5-journeys installation using vanila kubernetes 
 
