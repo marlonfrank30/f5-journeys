@@ -71,19 +71,19 @@ kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml
    to make it a default storageclass in your cluster issue the following command
 
 ```
-oc patch storageclass openebs-hostpath -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+kubectl patch storageclass openebs-hostpath -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 ```
 
    to confirm your changes issue the following command 
 
 ```
-oc get storageclass -n openebs
+kubectl get storageclass -n openebs
 ```
 
 4) apply the yaml file for the pvc storageclass referenced for the pv local-hostpath-pvc.yaml available as a reference at https://openebs.io/docs/user-guides/localpv-hostpath. the repo has this file already modified with all it is needed.
 
 ```
-oc apply -f local-hostpath-pvc.yaml
+kubectl apply -f local-hostpath-pvc.yaml
 ```
 
 ***Note: This is already done in the /config files. This is just a walk through of what its needed to get the docker files converted from f5 journeys tool to kubernetes. Download the f5-journeys repo from github located at https://github.com/f5devcentral/f5-journeys.git and then edit the journeys default deployment yaml file included the following specs (provided in the example app on item number 4 above). Prerequesites for your linux platform are available in more details at https://openebs.io/docs/user-guides/prerequisites you can skip to step 6.***
