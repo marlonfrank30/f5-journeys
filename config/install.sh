@@ -1,0 +1,13 @@
+kubectl apply -n home -f journeys-persistentvolume.yaml
+kubectl apply -n home -f celery-worker-claim0-persistentvolumeclaim.yaml
+kubectl apply -n home -f journeys-claim0-persistentvolumeclaim.yaml
+kubectl apply -n home -f postgres-claim0-persistentvolumeclaim.yaml
+kubectl apply -n home -f acc-api-deployment.yaml
+kubectl apply -n home -f celery-worker-deployment.yaml
+kubectl apply -n home -f journeys-deployment.yaml
+kubectl apply -n home -f postgres-deployment.yaml
+kubectl apply -n home -f redis-deployment.yaml
+kubectl apply -n home -f postgres-service.yaml
+kubectl apply -n home -f redis-service.yaml
+kubectl apply -n home -f acc-api-service.yaml
+kubectl apply -n home -f journeys-service.yaml

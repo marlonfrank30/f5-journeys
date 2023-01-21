@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: redis
-  name: redis
+    io.kompose.service: acc-api
+  name: acc-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: redis
+      io.kompose.service: acc-api
   strategy: {}
   template:
     metadata:
@@ -21,16 +21,28 @@ spec:
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
-        io.kompose.service: redis
+        io.kompose.service: acc-api
     spec:
       containers:
-      - image: redis:latest
+      - args:
+        - serve
+        env:
+        - name: ACC_API_PORT
+          value: "8080"
+        image: f5devcentral/f5-automation-config-converter
         imagePullPolicy: "Always"
-        name: redis
+        name: acc-api
         ports:
-        - containerPort: 6379
+        - containerPort: 8080
+          hostIP: 127.0.0.1
         resources: {}
+        volumeMounts:
+        - mountPath: /tmp
+          name: acc-api-tmpfs0
       restartPolicy: Always
       serviceAccountName: ""
-      volumes: null
+      volumes:
+      - emptyDir:
+          medium: Memory
+        name: acc-api-tmpfs0
 status: {}
